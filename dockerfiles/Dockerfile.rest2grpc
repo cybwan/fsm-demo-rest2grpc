@@ -1,0 +1,11 @@
+FROM --platform=$BUILDPLATFORM maven:3.8.6-openjdk-18-slim AS builder
+
+WORKDIR /demo
+COPY rest2grpc-demo .
+
+RUN --mount=type=cache,target=/root/.m2 \
+    mvn clean package
+
+FROM openjdk:18-jdk-slim
+COPY --from=builder /demo/server/target/server-0.0.1.jar /
+COPY --from=builder /demo/client/target/client-0.0.1.jar /
