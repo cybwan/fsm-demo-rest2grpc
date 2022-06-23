@@ -1,5 +1,14 @@
 # osm-edge-demo-rest2grpc
+## 运行环境要求
+
+- OS: **Ubuntu 20.04**
+- ARCH: **arm64/amd64**
+- K8s tools: **kubectl、helm**
+
+可参考 [cybwan/scripts](https://github.com/cybwan/scripts) 部署k8s-tools
+
 ## 下载demo工程
+
 ```
 git clone https://github.com/cybwan/osm-edge-demo-rest2grpc.git
 cd osm-edge-demo-rest2grpc
@@ -11,6 +20,7 @@ make install-osm-cli
 ```
 或
 amd64运行
+
 ```
 ./scripts/install-osm-cli.sh amd64 linux
 ```
@@ -18,6 +28,8 @@ arm64运行
 ```
 ./scripts/install-osm-cli.sh arm64 linux
 ```
+或者 [Release v1.1.0 · flomesh-io/osm-edge](https://github.com/flomesh-io/osm-edge/releases/tag/v1.1.0)手动下载安装
+
 ## 调整环境变量
 
 ```
