@@ -4,8 +4,17 @@
 - OS: **Ubuntu 20.04**
 - ARCH: **arm64/amd64**
 - K8s tools: **kubectl、helm**
+- 下载工具: **axel**
 
-可参考 [cybwan/scripts](https://github.com/cybwan/scripts) 部署k8s-tools
+安装 k8s-tools：
+
+参考 [cybwan/scripts](https://github.com/cybwan/scripts)
+
+安装 下载工具 :
+
+```
+sudo apt install axel -y
+```
 
 ## 下载demo工程
 
