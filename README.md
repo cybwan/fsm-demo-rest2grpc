@@ -41,7 +41,15 @@ export CTR_REGISTRY_USERNAME=flomesh #按需设定
 export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 ```
 
-如果本地没有k8s环境，执行下面指令启动kind集群:
+**注意:**
+
+部署脚本会对K8S_INGRESS_NODE环境变量所指定的node打ingress-ready=true标签，查看当前的node节点：
+
+```
+kubectl get nodes
+```
+
+如果本地没有k8s环境，执行下面指令部署&启动kind集群:
 
 ```
 make kind-up
