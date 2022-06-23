@@ -1,10 +1,15 @@
 # osm-edge-demo-rest2grpc
+## 下载demo工程
+```
+git clone https://github.com/cybwan/osm-edge-demo-rest2grpc.git
+cd osm-edge-demo-rest2grpc
+```
 ## 安装osm edge cli
 
 ```
 make install-osm-cli
 ```
-或 
+或
 amd64运行
 ```
 ./scripts/install-osm-cli.sh linux amd64
@@ -13,12 +18,6 @@ arm64运行
 ```
 ./scripts/install-osm-cli.sh linux arm64
 ```
-## 下载demo工程
-```
-git clone https://github.com/cybwan/osm-edge-demo-rest2grpc.git
-cd osm-edge-demo-rest2grpc
-```
-
 ## 调整环境变量
 
 ```
