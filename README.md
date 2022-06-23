@@ -29,6 +29,12 @@ export CTR_REGISTRY_USERNAME=flomesh #按需设定
 export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 ```
 
+如果本地没有k8s环境，执行下面指令启动kind集群:
+
+```
+make kind-up
+```
+
 ## demo部署
 
 ```
