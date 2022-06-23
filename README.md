@@ -61,18 +61,6 @@ make kind-up
 ./demo/run-osm-demo.sh
 ```
 
-## 打开client端口转发
-
-```
-./scripts/port-forward-rest2grpc-client.sh
-```
-
-## 打开ingress端口转发
-
-```
-./scripts/port-forward-rest2grpc-ingress-pipy.sh
-```
-
 ## 测试 
 
 127.0.0.1调整为ingress所在node的ip
