@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: rest2grpc-server
+
+grpc:
+  server:
+    port: 9898
+    enableKeepAlive: true

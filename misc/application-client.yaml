@@ -1,0 +1,19 @@
+server:
+  port: 8888
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000 #最大工作线程数量
+    min-spare-threads: 20 #最小工作线程数量
+    max-connections: 10000 #一瞬间最大支持的并发的连接数
+    accept-count: 200 #等待队列长度
+spring:
+  application:
+    name: rest2grpc-client
+
+grpc:
+  client:
+    rest2grpc-server:
+      address: 'static://rest2grpc-server:9898'
+      enableKeepAlive: true
+      keepAliveWithoutCalls: true
+      negotiationType: plaintext
