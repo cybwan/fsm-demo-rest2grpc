@@ -12,11 +12,11 @@ make install-osm-cli
 或
 amd64运行
 ```
-./scripts/install-osm-cli.sh linux amd64
+./scripts/install-osm-cli.sh amd64 linux
 ```
 arm64运行
 ```
-./scripts/install-osm-cli.sh linux arm64
+./scripts/install-osm-cli.sh arm64 linux
 ```
 ## 调整环境变量
 
