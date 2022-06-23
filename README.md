@@ -18,13 +18,12 @@ cd osm-edge-demo-rest2grpc
 ```
 make install-osm-cli
 ```
-或
-amd64运行
+或者 amd64 运行
 
 ```
 ./scripts/install-osm-cli.sh amd64 linux
 ```
-arm64运行
+或者 arm64 运行
 ```
 ./scripts/install-osm-cli.sh arm64 linux
 ```
