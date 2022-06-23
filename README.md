@@ -50,7 +50,6 @@ export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 ```
 curl http://127.0.0.1:80/client-only
 curl http://127.0.0.1:80/client-only?name=tom
-curl http://127.0.0.1:80/client-server?name=tom
 ```
 
 ### ingress <=> client <=> server
