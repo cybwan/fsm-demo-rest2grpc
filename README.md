@@ -71,6 +71,12 @@ make kind-up
 
 ## 测试 
 
+### 开放PIPY INGRESS对外访问
+
+```
+./scripts/port-forward-rest2grpc-ingress-pipy.sh
+```
+
 127.0.0.1调整为ingress所在node的ip
 
 ### ingress <=> client
@@ -85,6 +91,18 @@ curl http://127.0.0.1:80/client-only?name=tom
 ```
 curl http://127.0.0.1:80/client-server
 curl http://127.0.0.1:80/client-server?name=tom
+```
+
+## 开放PIPY REPO对外访问
+
+```
+./scripts/port-forward-osm-repo.sh
+```
+
+127.0.0.1调整为osm edge controller所在node的ip
+
+```
+http://127.0.0.1:6060
 ```
 
 ## 日志
