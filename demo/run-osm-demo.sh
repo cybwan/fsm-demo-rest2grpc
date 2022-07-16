@@ -102,7 +102,7 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="debug" \
+      --set=osm.controllerLogLevel="error" \
       --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
@@ -127,7 +127,7 @@ else
       --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="debug" \
+      --set=osm.controllerLogLevel="error" \
       --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
