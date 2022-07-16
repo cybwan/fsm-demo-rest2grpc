@@ -33,8 +33,10 @@ ENABLE_FLUENTBIT="${ENABLE_FLUENTBIT:-false}"
 DEPLOY_PROMETHEUS="${DEPLOY_PROMETHEUS:-false}"
 SIDECAR_LOG_LEVEL="${SIDECAR_LOG_LEVEL:-error}"
 USE_PRIVATE_REGISTRY="${USE_PRIVATE_REGISTRY:-false}"
+OSM_CONTROLLER_REPLICACOUNT="${OSM_CONTROLLER_REPLICACOUNT:-1}"
+OSM_INJECTOR_REPLICACOUNT="${OSM_INJECTOR_REPLICACOUNT:-1}"
+OSM_BOOTSTRAP_REPLICACOUNT="${OSM_BOOTSTRAP_REPLICACOUNT:-1}"
 TIMEOUT="${TIMEOUT:-300s}"
-
 # For any additional installation arguments. Used heavily in CI.
 optionalInstallArgs=$*
 
@@ -104,6 +106,9 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
       --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
+      --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
+      --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 else
@@ -129,6 +134,9 @@ else
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
       --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
+      --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
+      --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 fi
