@@ -1,3 +1,6 @@
 /.idea/
 /rest2grpc-demo/
 /.env
+/bin/LICENSE
+/bin/osm
+/bin/README.md
