@@ -10,12 +10,6 @@
 
 参考 [cybwan/scripts](https://github.com/cybwan/scripts)
 
-安装 下载工具 :
-
-```
-sudo apt install axel -y
-```
-
 ## 下载demo工程
 
 ```
@@ -25,17 +19,9 @@ cd osm-edge-demo-rest2grpc
 ## 安装osm edge cli
 
 ```
-make install-osm-cli
+make bin/osm
 ```
-或者 amd64 运行
 
-```
-./scripts/install-osm-cli.sh amd64 linux
-```
-或者 arm64 运行
-```
-./scripts/install-osm-cli.sh arm64 linux
-```
 或者 [Release v1.1.0 · flomesh-io/osm-edge](https://github.com/flomesh-io/osm-edge/releases/tag/v1.1.0)手动下载安装
 
 ## 调整环境变量

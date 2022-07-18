@@ -18,10 +18,10 @@ MESH_NAME="${MESH_NAME:-osm-edge}"
 K8S_NAMESPACE="${K8S_NAMESPACE:-osm-edge-system}"
 TEST_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-rest2grpc}"
 CERT_MANAGER="${CERT_MANAGER:-tresor}"
-CTR_REGISTRY="${CTR_REGISTRY:-cybwan}"
+CTR_REGISTRY="${CTR_REGISTRY:-flomesh}"
 CTR_REGISTRY_CREDS_NAME="${CTR_REGISTRY_CREDS_NAME:-acr-creds}"
 DEPLOY_TRAFFIC_SPLIT="${DEPLOY_TRAFFIC_SPLIT:-true}"
-CTR_TAG="${CTR_TAG:-$(git rev-parse HEAD)}"
+CTR_TAG="${CTR_TAG:-1.1.0}"
 IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-Always}"
 ENABLE_DEBUG_SERVER="${ENABLE_DEBUG_SERVER:-false}"
 ENABLE_EGRESS="${ENABLE_EGRESS:-false}"
@@ -82,7 +82,7 @@ fi
 echo "Certificate Manager in use: $CERT_MANAGER"
 if [ "$CERT_MANAGER" = "vault" ]; then
   # shellcheck disable=SC2086
-  osm install \
+  bin/osm install \
       --osm-namespace "$K8S_NAMESPACE" \
       --verbose \
       --mesh-name "$MESH_NAME" \
@@ -105,7 +105,6 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
-      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
@@ -133,7 +132,6 @@ else
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
-      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
       --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \

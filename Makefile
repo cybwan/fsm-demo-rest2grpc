@@ -10,6 +10,7 @@ ARCH_MAP_aarch64 := arm64
 
 BUILDARCH := $(ARCH_MAP_$(shell uname -m))
 BUILDOS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
+OSM_CLI_VERSION := v1.1.0
 
 .PHONY: rest2grpc-demo
 rest2grpc-demo:
@@ -32,16 +33,15 @@ ifndef CTR_TAG
 endif
 
 .PHONY: kind-up
-kind-up:
+kind-up: bin/osm
 	./scripts/kind-with-registry.sh
 
 .PHONY: kind-reset
-kind-reset:
+kind-reset: bin/osm
 	kind delete cluster --name osm
 
-.PHONY: install-osm-cli
-install-osm-cli:
-	./scripts/install-osm-cli.sh ${BUILDARCH} ${BUILDOS}
+bin/osm:
+	./scripts/install-osm-cli.sh ${BUILDARCH} ${BUILDOS} ${OSM_CLI_VERSION}
 
 .env:
 	cp .env.example .env

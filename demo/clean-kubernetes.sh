@@ -9,7 +9,7 @@ TIMEOUT="${TIMEOUT:-90s}"
 INGRESS_PIPY_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-flomesh}"
 TEST_NAMESPACE="${TEST_NAMESPACE:-rest2grpc}"
 
-osm uninstall mesh -f --mesh-name "$MESH_NAME" --osm-namespace "$K8S_NAMESPACE" --delete-namespace -a
+bin/osm uninstall mesh -f --mesh-name "$MESH_NAME" --osm-namespace "$K8S_NAMESPACE" --delete-namespace -a
 kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT" &
 
 # Clean up Hashicorp Vault deployment

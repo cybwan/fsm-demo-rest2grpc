@@ -12,14 +12,14 @@ if [ -z "$2" ]; then
   exit 1
 fi
 
-BUILD_ARCH=$1
-BUILD_OS=$2
+if [ -z "$3" ]; then
+  echo "Error: expected one argument OSM CLI VERSION"
+  exit 1
+fi
 
-rm -rf ./osm-edge-v1.1.0-${BUILD_OS}-${BUILD_ARCH}.tar.gz
-sudo axel https://github.com/flomesh-io/osm-edge/releases/download/v1.1.0/osm-edge-v1.1.0-${BUILD_OS}-${BUILD_ARCH}.tar.gz
-mkdir -p /tmp/osm-cli
-tar zxf ./osm-edge-v1.1.0-${BUILD_OS}-${BUILD_ARCH}.tar.gz -C /tmp/osm-cli
-cp -rf /tmp/osm-cli/linux-${BUILD_ARCH}/osm /usr/local/sbin/osm
-rm -rf /tmp/osm-cli
-rm -rf osm-edge-v1.1.0-${BUILD_OS}-${BUILD_ARCH}.tar.gz
-sudo chmod a+x /usr/local/sbin/osm
+DEMO_ARCH=$1
+DEMO_OS=$2
+DEMO_OSM_CLI_V=$3
+
+curl -L https://github.com/flomesh-io/osm-edge/releases/download/${DEMO_OSM_CLI_V}/osm-edge-${DEMO_OSM_CLI_V}-${DEMO_OS}-${DEMO_ARCH}.tar.gz | tar -vxzf -
+mv ./${DEMO_OS}-${DEMO_ARCH} bin
