@@ -54,6 +54,10 @@ kind-demo: .env kind-up
 demo-up: .env bin/osm
 	./demo/run-osm-demo.sh
 
+.PHONY: demo-forward
+demo-forward: .env bin/osm
+	./scripts/port-forward-rest2grpc-ingress-pipy.sh
+
 .PHONY: demo-reset
 demo-reset: .env bin/osm
 	./demo/clean-kubernetes.sh

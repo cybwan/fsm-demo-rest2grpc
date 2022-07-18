@@ -52,7 +52,7 @@ make kind-up
 ## demo部署
 
 ```
-./demo/run-osm-demo.sh
+make demo-up
 ```
 
 ## 测试 
@@ -60,7 +60,7 @@ make kind-up
 ### 开放PIPY INGRESS对外访问
 
 ```
-./scripts/port-forward-rest2grpc-ingress-pipy.sh
+make demo-forward
 ```
 
 127.0.0.1调整为ingress所在node的ip
@@ -120,6 +120,6 @@ http://127.0.0.1:6060
 ## 卸载
 
 ```
-./demo/clean-kubernetes.sh
+make demo-reset
 ```
 
