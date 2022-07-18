@@ -15,13 +15,13 @@ source .env
 
 # Set meaningful defaults for env vars we expect from .env
 MESH_NAME="${MESH_NAME:-osm-edge}"
-K8S_NAMESPACE="${K8S_NAMESPACE:-osm-edge-system}"
+K8S_NAMESPACE="${K8S_NAMESPACE:-osm-system}"
 TEST_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-rest2grpc}"
 CERT_MANAGER="${CERT_MANAGER:-tresor}"
 CTR_REGISTRY="${CTR_REGISTRY:-flomesh}"
+CTR_TAG="${CTR_TAG:-1.1.0}"
 CTR_REGISTRY_CREDS_NAME="${CTR_REGISTRY_CREDS_NAME:-acr-creds}"
 DEPLOY_TRAFFIC_SPLIT="${DEPLOY_TRAFFIC_SPLIT:-true}"
-CTR_TAG="${CTR_TAG:-1.1.0}"
 IMAGE_PULL_POLICY="${IMAGE_PULL_POLICY:-Always}"
 ENABLE_DEBUG_SERVER="${ENABLE_DEBUG_SERVER:-false}"
 ENABLE_EGRESS="${ENABLE_EGRESS:-false}"
@@ -112,7 +112,7 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       $optionalInstallArgs
 else
   # shellcheck disable=SC2086
-  osm install \
+  bin/osm install \
       --osm-namespace "$K8S_NAMESPACE" \
       --verbose \
       --mesh-name "$MESH_NAME" \

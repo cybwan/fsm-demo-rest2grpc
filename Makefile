@@ -1,7 +1,7 @@
 #!make
 
-CTR_REGISTRY ?= cybwan
-CTR_TAG      ?= latest
+CTR_REGISTRY ?= flomesh
+CTR_TAG      ?= 1.1.0
 DOCKER_BUILDX_OUTPUT ?= type=registry
 
 ARCH_MAP_x86_64 := amd64
@@ -32,20 +32,28 @@ ifndef CTR_TAG
 	$(error CTR_TAG environment variable is not defined; see the .env.example file for more information; then source .env)
 endif
 
+bin/osm:
+	./scripts/install-osm-cli.sh ${BUILDARCH} ${BUILDOS} ${OSM_CLI_VERSION}
+
+.env: bin/osm
+	cp .env.example .env
+
 .PHONY: kind-up
-kind-up: bin/osm
+kind-up:
 	./scripts/kind-with-registry.sh
 
 .PHONY: kind-reset
 kind-reset: bin/osm
 	kind delete cluster --name osm
 
-bin/osm:
-	./scripts/install-osm-cli.sh ${BUILDARCH} ${BUILDOS} ${OSM_CLI_VERSION}
-
-.env:
-	cp .env.example .env
-
 .PHONY: kind-demo
 kind-demo: .env kind-up
 	./demo/run-osm-demo.sh
+
+.PHONY: demo-up
+demo-up: .env bin/osm
+	./demo/run-osm-demo.sh
+
+.PHONY: demo-reset
+demo-reset: .env bin/osm
+	./demo/clean-kubernetes.sh
