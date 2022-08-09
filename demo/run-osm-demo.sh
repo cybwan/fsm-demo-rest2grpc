@@ -105,6 +105,8 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
+      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=osm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
       --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
@@ -132,6 +134,8 @@ else
       --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
       --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=osm.controllerLogLevel="error" \
+      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=osm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
       --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
