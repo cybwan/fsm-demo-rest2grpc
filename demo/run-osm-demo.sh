@@ -84,7 +84,6 @@ if [ "$CERT_MANAGER" = "vault" ]; then
   # shellcheck disable=SC2086
   bin/osm install \
       --osm-namespace "$K8S_NAMESPACE" \
-      --verbose \
       --mesh-name "$MESH_NAME" \
       --set=osm.certificateProvider.kind="$CERT_MANAGER" \
       --set=osm.vault.host="$VAULT_HOST" \
@@ -116,7 +115,6 @@ else
   # shellcheck disable=SC2086
   bin/osm install \
       --osm-namespace "$K8S_NAMESPACE" \
-      --verbose \
       --mesh-name "$MESH_NAME" \
       --set=osm.certificateProvider.kind="$CERT_MANAGER" \
       --set=osm.image.registry="$CTR_REGISTRY" \
