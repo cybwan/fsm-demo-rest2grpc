@@ -1,7 +1,7 @@
 #!make
 
 CTR_REGISTRY ?= flomesh
-CTR_TAG      ?= 1.1.0
+CTR_TAG      ?= 1.1.1
 DOCKER_BUILDX_OUTPUT ?= type=registry
 
 ARCH_MAP_x86_64 := amd64
@@ -10,7 +10,7 @@ ARCH_MAP_aarch64 := arm64
 
 BUILDARCH := $(ARCH_MAP_$(shell uname -m))
 BUILDOS := $(shell uname -s | tr '[:upper:]' '[:lower:]')
-OSM_CLI_VERSION := v1.1.0
+OSM_CLI_VERSION := v1.1.1
 
 .PHONY: rest2grpc-demo
 rest2grpc-demo:
