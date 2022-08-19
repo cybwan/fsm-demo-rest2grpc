@@ -1,11 +1,9 @@
 # osm-edge-demo-rest2grpc
 ## 运行环境要求
-#
-#
+
 - OS: **Ubuntu 20.04**
 - ARCH: **arm64/amd64**
 - K8s tools: **kubectl、helm**
-- 下载工具: **axel**
 
 安装 k8s-tools：
 

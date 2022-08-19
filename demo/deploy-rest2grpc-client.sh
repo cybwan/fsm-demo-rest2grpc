@@ -9,7 +9,6 @@ SVC="rest2grpc-client"
 USE_PRIVATE_REGISTRY="${USE_PRIVATE_REGISTRY:-true}"
 KUBE_CONTEXT=$(kubectl config current-context)
 TEST_NAMESPACE="${TEST_NAMESPACE:-rest2grpc}"
-KUBERNETES_NODE_ARCH="${KUBERNETES_NODE_ARCH:-amd64}"
 KUBERNETES_NODE_OS="${KUBERNETES_NODE_OS:-linux}"
 CTR_REGISTRY_CREDS_NAME="${CTR_REGISTRY_CREDS_NAME:-acr-creds}"
 
@@ -63,7 +62,6 @@ spec:
     spec:
       serviceAccountName: "$SVC"
       nodeSelector:
-        kubernetes.io/arch: ${KUBERNETES_NODE_ARCH}
         kubernetes.io/os: ${KUBERNETES_NODE_OS}
       containers:
         - image: "cybwan/osm-edge-demo-rest2grpc:latest"
