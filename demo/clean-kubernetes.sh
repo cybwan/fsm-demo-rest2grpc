@@ -17,7 +17,7 @@ kubectl delete deployment vault -n "$INGRESS_PIPY_NAMESPACE" --ignore-not-found 
 kubectl delete service vault -n "$INGRESS_PIPY_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT"
 kubectl delete namespace "$INGRESS_PIPY_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT"
 
-bin/osm uninstall mesh -f --mesh-name "$MESH_NAME" --osm-namespace "$K8S_NAMESPACE" --delete-namespace -a
+bin/fsm uninstall mesh -f --mesh-name "$MESH_NAME" --fsm-namespace "$K8S_NAMESPACE" --delete-namespace -a
 
 kubectl delete namespace "$TEST_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT"
 kubectl delete namespace "$K8S_NAMESPACE" --ignore-not-found --wait --timeout="$TIMEOUT"

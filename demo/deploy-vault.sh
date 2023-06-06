@@ -64,7 +64,7 @@ spec:
             vault write pki/roles/${VAULT_ROLE} allow_any_name=true allow_subdomains=true max_ttl=87700h;
 
             # Create the root certificate (See: https://www.vaultproject.io/docs/secrets/pki#setup)
-            vault write pki/root/generate/internal common_name='osm.root' ttl='87700h';
+            vault write pki/root/generate/internal common_name='fsm.root' ttl='87700h';
             tail /dev/random;
         securityContext:
           capabilities:

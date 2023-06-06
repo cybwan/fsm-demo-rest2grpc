@@ -5,7 +5,7 @@ set -o nounset
 set -o pipefail
 
 # desired cluster name; default is "kind"
-KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-osm}"
+KIND_CLUSTER_NAME="${KIND_CLUSTER_NAME:-fsm}"
 
 # shellcheck disable=SC2086
 if kind get clusters | grep -q ^$KIND_CLUSTER_NAME$ ; then

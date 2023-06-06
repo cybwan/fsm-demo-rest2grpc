@@ -21,5 +21,5 @@ DEMO_ARCH=$1
 DEMO_OS=$2
 DEMO_OSM_CLI_V=$3
 
-curl -L https://github.com/flomesh-io/osm-edge/releases/download/${DEMO_OSM_CLI_V}/osm-edge-${DEMO_OSM_CLI_V}-${DEMO_OS}-${DEMO_ARCH}.tar.gz | tar -vxzf -
+curl -L https://github.com/flomesh-io/fsm/releases/download/${DEMO_OSM_CLI_V}/fsm-${DEMO_OSM_CLI_V}-${DEMO_OS}-${DEMO_ARCH}.tar.gz | tar -vxzf -
 mv ./${DEMO_OS}-${DEMO_ARCH} bin

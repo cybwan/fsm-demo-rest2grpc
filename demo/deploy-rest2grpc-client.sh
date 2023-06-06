@@ -64,7 +64,7 @@ spec:
       nodeSelector:
         kubernetes.io/os: ${KUBERNETES_NODE_OS}
       containers:
-        - image: "cybwan/osm-edge-demo-rest2grpc:latest"
+        - image: "cybwan/fsm-demo-rest2grpc:latest"
           imagePullPolicy: Always
           name: $SVC
           ports:

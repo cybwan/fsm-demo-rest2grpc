@@ -5,7 +5,7 @@
 # If <dirPath> doesn't exist, it is created.
 # Requires jq (https://stedolan.github.io/jq/)
 
-# Use: ./get-osm-namespace-logs.sh <dirPath>
+# Use: ./get-fsm-namespace-logs.sh <dirPath>
 
 # This command will fail on CI as .env does not exist. Can be ignored.
 # shellcheck disable=SC1091

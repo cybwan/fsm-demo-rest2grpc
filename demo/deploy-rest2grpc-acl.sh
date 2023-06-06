@@ -4,14 +4,14 @@ set -auo pipefail
 
 # shellcheck disable=SC1091
 source .env
-MESH_NAME="${MESH_NAME:-osm-edge}"
+MESH_NAME="${MESH_NAME:-fsm}"
 INGRESS_PIPY_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-flomesh}"
 PIPY_INGRESS_SERVICE=${PIPY_INGRESS_SERVICE:-ingress-pipy-controller}
 TEST_NAMESPACE="${TEST_NAMESPACE:-rest2grpc}"
 
 SVC_REST2GRPC_CLIENT="rest2grpc-client"
 
-K8S_INGRESS_NODE="${K8S_INGRESS_NODE:-osm-worker}"
+K8S_INGRESS_NODE="${K8S_INGRESS_NODE:-fsm-worker}"
 
 kubectl apply -f - <<EOF
 apiVersion: networking.k8s.io/v1

@@ -14,8 +14,8 @@ fi
 source .env
 
 # Set meaningful defaults for env vars we expect from .env
-MESH_NAME="${MESH_NAME:-osm-edge}"
-K8S_NAMESPACE="${K8S_NAMESPACE:-osm-system}"
+MESH_NAME="${MESH_NAME:-fsm}"
+K8S_NAMESPACE="${K8S_NAMESPACE:-fsm-system}"
 TEST_NAMESPACE="${INGRESS_PIPY_NAMESPACE:-rest2grpc}"
 CERT_MANAGER="${CERT_MANAGER:-tresor}"
 CTR_REGISTRY="${CTR_REGISTRY:-flomesh}"
@@ -52,10 +52,10 @@ exit_error() {
 # cleanup stale resources from previous runs
 ./demo/clean-kubernetes.sh
 
-# The demo uses osm's namespace as defined by environment variables, K8S_NAMESPACE
+# The demo uses fsm's namespace as defined by environment variables, K8S_NAMESPACE
 # to house the control plane components.
 #
-# Note: `osm install` creates the namespace via Helm only if such a namespace already
+# Note: `fsm install` creates the namespace via Helm only if such a namespace already
 # doesn't exist. We explicitly create the namespace below because of the need to
 # create container registry credentials in this namespace for the purpose of testing.
 # The side effect of creating the namespace here instead of letting Helm create it is
@@ -82,63 +82,63 @@ fi
 echo "Certificate Manager in use: $CERT_MANAGER"
 if [ "$CERT_MANAGER" = "vault" ]; then
   # shellcheck disable=SC2086
-  bin/osm install \
-      --osm-namespace "$K8S_NAMESPACE" \
+  bin/fsm install \
+      --fsm-namespace "$K8S_NAMESPACE" \
       --mesh-name "$MESH_NAME" \
       --set=fsm.enabled=true \
-      --set=osm.certificateProvider.kind="$CERT_MANAGER" \
-      --set=osm.vault.host="$VAULT_HOST" \
-      --set=osm.vault.token="$VAULT_TOKEN" \
-      --set=osm.vault.protocol="$VAULT_PROTOCOL" \
-      --set=osm.image.registry="$CTR_REGISTRY" \
-      --set=osm.imagePullSecrets[0].name="$CTR_REGISTRY_CREDS_NAME" \
-      --set=osm.image.tag="$CTR_TAG" \
-      --set=osm.image.pullPolicy="$IMAGE_PULL_POLICY" \
-      --set=osm.enableDebugServer="$ENABLE_DEBUG_SERVER" \
-      --set=osm.enableEgress="$ENABLE_EGRESS" \
-      --set=osm.enableReconciler="$ENABLE_RECONCILER" \
-      --set=osm.deployGrafana="$DEPLOY_GRAFANA" \
-      --set=osm.deployJaeger="$DEPLOY_JAEGER" \
-      --set=osm.tracing.enable="$DEPLOY_JAEGER" \
-      --set=osm.tracing.address="$TRACING_ADDRESS" \
-      --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
-      --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
-      --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="error" \
-      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
-      --set=osm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
-      --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
-      --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
-      --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
+      --set=fsm.certificateProvider.kind="$CERT_MANAGER" \
+      --set=fsm.vault.host="$VAULT_HOST" \
+      --set=fsm.vault.token="$VAULT_TOKEN" \
+      --set=fsm.vault.protocol="$VAULT_PROTOCOL" \
+      --set=fsm.image.registry="$CTR_REGISTRY" \
+      --set=fsm.imagePullSecrets[0].name="$CTR_REGISTRY_CREDS_NAME" \
+      --set=fsm.image.tag="$CTR_TAG" \
+      --set=fsm.image.pullPolicy="$IMAGE_PULL_POLICY" \
+      --set=fsm.enableDebugServer="$ENABLE_DEBUG_SERVER" \
+      --set=fsm.enableEgress="$ENABLE_EGRESS" \
+      --set=fsm.enableReconciler="$ENABLE_RECONCILER" \
+      --set=fsm.deployGrafana="$DEPLOY_GRAFANA" \
+      --set=fsm.deployJaeger="$DEPLOY_JAEGER" \
+      --set=fsm.tracing.enable="$DEPLOY_JAEGER" \
+      --set=fsm.tracing.address="$TRACING_ADDRESS" \
+      --set=fsm.enableFluentbit="$ENABLE_FLUENTBIT" \
+      --set=fsm.deployPrometheus="$DEPLOY_PROMETHEUS" \
+      --set=fsm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
+      --set=fsm.controllerLogLevel="error" \
+      --set=fsm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=fsm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
+      --set=fsm.fsmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
+      --set=fsm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
+      --set=fsm.fsmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 else
   # shellcheck disable=SC2086
-  bin/osm install \
-      --osm-namespace "$K8S_NAMESPACE" \
+  bin/fsm install \
+      --fsm-namespace "$K8S_NAMESPACE" \
       --mesh-name "$MESH_NAME" \
       --set=fsm.enabled=true \
-      --set=osm.certificateProvider.kind="$CERT_MANAGER" \
-      --set=osm.image.registry="$CTR_REGISTRY" \
-      --set=osm.imagePullSecrets[0].name="$CTR_REGISTRY_CREDS_NAME" \
-      --set=osm.image.tag="$CTR_TAG" \
-      --set=osm.image.pullPolicy="$IMAGE_PULL_POLICY" \
-      --set=osm.enableDebugServer="$ENABLE_DEBUG_SERVER" \
-      --set=osm.enableEgress="$ENABLE_EGRESS" \
-      --set=osm.enableReconciler="$ENABLE_RECONCILER" \
-      --set=osm.deployGrafana="$DEPLOY_GRAFANA" \
-      --set=osm.deployJaeger="$DEPLOY_JAEGER" \
-      --set=osm.tracing.enable="$DEPLOY_JAEGER" \
-      --set=osm.tracing.address="$TRACING_ADDRESS" \
-      --set=osm.enableFluentbit="$ENABLE_FLUENTBIT" \
-      --set=osm.deployPrometheus="$DEPLOY_PROMETHEUS" \
-      --set=osm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
-      --set=osm.controllerLogLevel="error" \
-      --set=osm.sidecarImage="flomesh/pipy-nightly:latest" \
-      --set=osm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
-      --set=osm.osmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
-      --set=osm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
-      --set=osm.osmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
+      --set=fsm.certificateProvider.kind="$CERT_MANAGER" \
+      --set=fsm.image.registry="$CTR_REGISTRY" \
+      --set=fsm.imagePullSecrets[0].name="$CTR_REGISTRY_CREDS_NAME" \
+      --set=fsm.image.tag="$CTR_TAG" \
+      --set=fsm.image.pullPolicy="$IMAGE_PULL_POLICY" \
+      --set=fsm.enableDebugServer="$ENABLE_DEBUG_SERVER" \
+      --set=fsm.enableEgress="$ENABLE_EGRESS" \
+      --set=fsm.enableReconciler="$ENABLE_RECONCILER" \
+      --set=fsm.deployGrafana="$DEPLOY_GRAFANA" \
+      --set=fsm.deployJaeger="$DEPLOY_JAEGER" \
+      --set=fsm.tracing.enable="$DEPLOY_JAEGER" \
+      --set=fsm.tracing.address="$TRACING_ADDRESS" \
+      --set=fsm.enableFluentbit="$ENABLE_FLUENTBIT" \
+      --set=fsm.deployPrometheus="$DEPLOY_PROMETHEUS" \
+      --set=fsm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
+      --set=fsm.controllerLogLevel="error" \
+      --set=fsm.sidecarImage="flomesh/pipy-nightly:latest" \
+      --set=fsm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
+      --set=fsm.fsmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
+      --set=fsm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
+      --set=fsm.fsmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
       --timeout="$TIMEOUT" \
       $optionalInstallArgs
 fi

@@ -1,4 +1,4 @@
-# osm-edge-demo-rest2grpc
+# fsm-demo-rest2grpc
 ## 运行环境要求
 
 - OS: **Ubuntu 20.04**
@@ -12,16 +12,16 @@
 ## 下载demo工程
 
 ```
-git clone https://github.com/cybwan/osm-edge-demo-rest2grpc.git
-cd osm-edge-demo-rest2grpc
+git clone https://github.com/cybwan/fsm-demo-rest2grpc.git
+cd fsm-demo-rest2grpc
 ```
-## 安装osm edge cli
+## 安装fsm cli
 
 ```
-make bin/osm
+make bin/fsm
 ```
 
-或者 [Release v1.1.0 · flomesh-io/osm-edge](https://github.com/flomesh-io/osm-edge/releases/tag/v1.1.0)手动下载安装
+或者 [Release v1.1.0 · flomesh-io/fsm](https://github.com/flomesh-io/fsm/releases/tag/v1.1.0)手动下载安装
 
 ## 调整环境变量
 
@@ -29,7 +29,7 @@ make bin/osm
 make .env
 #调整变量
 vi .env
-export K8S_INGRESS_NODE=osm-worker   #指定为要部署ingress的node
+export K8S_INGRESS_NODE=fsm-worker   #指定为要部署ingress的node
 export CTR_REGISTRY_USERNAME=flomesh #按需设定
 export CTR_REGISTRY_PASSWORD=flomesh #按需设定
 ```
@@ -81,10 +81,10 @@ curl http://127.0.0.1:80/client-server?name=tom
 ## 开放PIPY REPO对外访问
 
 ```
-./scripts/port-forward-osm-repo.sh
+./scripts/port-forward-fsm-repo.sh
 ```
 
-127.0.0.1调整为osm edge controller所在node的ip
+127.0.0.1调整为fsm controller所在node的ip
 
 ```
 http://127.0.0.1:6060

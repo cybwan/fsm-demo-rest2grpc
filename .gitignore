@@ -2,5 +2,5 @@
 /rest2grpc-demo/
 /.env
 /bin/LICENSE
-/bin/osm
+/bin/fsm
 /bin/README.md

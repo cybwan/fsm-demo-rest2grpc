@@ -18,13 +18,13 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: osm-ca
+  name: fsm-ca
   namespace: $K8S_NAMESPACE
 spec:
   isCA: true
   duration: 2160h # 90d
-  secretName: osm-ca-bundle
-  commonName: osm-edge-system
+  secretName: fsm-ca-bundle
+  commonName: fsm-system
   issuerRef:
     name: selfsigned
     kind: Issuer
@@ -33,11 +33,11 @@ spec:
 apiVersion: cert-manager.io/v1
 kind: Issuer
 metadata:
-  name: osm-ca
+  name: fsm-ca
   namespace: $K8S_NAMESPACE
 spec:
   ca:
-    secretName: osm-ca-bundle
+    secretName: fsm-ca-bundle
 EOF
 
 return $?
