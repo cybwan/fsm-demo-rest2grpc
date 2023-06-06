@@ -85,7 +85,6 @@ if [ "$CERT_MANAGER" = "vault" ]; then
   bin/fsm install \
       --fsm-namespace "$K8S_NAMESPACE" \
       --mesh-name "$MESH_NAME" \
-      --set=fsm.enabled=true \
       --set=fsm.certificateProvider.kind="$CERT_MANAGER" \
       --set=fsm.vault.host="$VAULT_HOST" \
       --set=fsm.vault.token="$VAULT_TOKEN" \
@@ -106,7 +105,6 @@ if [ "$CERT_MANAGER" = "vault" ]; then
       --set=fsm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=fsm.controllerLogLevel="error" \
       --set=fsm.sidecarImage="flomesh/pipy-nightly:latest" \
-      --set=fsm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
       --set=fsm.fsmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=fsm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=fsm.fsmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
@@ -117,7 +115,6 @@ else
   bin/fsm install \
       --fsm-namespace "$K8S_NAMESPACE" \
       --mesh-name "$MESH_NAME" \
-      --set=fsm.enabled=true \
       --set=fsm.certificateProvider.kind="$CERT_MANAGER" \
       --set=fsm.image.registry="$CTR_REGISTRY" \
       --set=fsm.imagePullSecrets[0].name="$CTR_REGISTRY_CREDS_NAME" \
@@ -135,7 +132,6 @@ else
       --set=fsm.sidecarLogLevel="$SIDECAR_LOG_LEVEL" \
       --set=fsm.controllerLogLevel="error" \
       --set=fsm.sidecarImage="flomesh/pipy-nightly:latest" \
-      --set=fsm.pipyRepoImage="flomesh/pipy-repo-nightly:latest"\
       --set=fsm.fsmController.replicaCount="${OSM_CONTROLLER_REPLICACOUNT}" \
       --set=fsm.injector.replicaCount="${OSM_INJECTOR_REPLICACOUNT}" \
       --set=fsm.fsmBootstrap.replicaCount="${OSM_BOOTSTRAP_REPLICACOUNT}" \
